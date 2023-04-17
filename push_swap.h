@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/14 14:41:48 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,50 +18,55 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct t_node
+typedef struct t_lst
 {
 	int				content;
-	struct t_node	*next;
-}					t_node;
+	struct t_lst	*next;
+}					t_lst;
 
 typedef struct all
 {
 	char			*args;
 	char			**arg_2d;
 	int				size;
+	int				div;
+	int				mid;
+	int				offset;
+	int				start;
+	int				end;
 }					t_all;
 
-t_node				*mylst_new(int content);
-t_node				*mylst_last(t_node *lst);
-void				mylstadd_back(t_node **lst, t_node *new);
-void				mylstadd_front(t_node **lst, t_node *new);
-int					mylst_size(t_node *lst);
-int					issorted(t_node *stack);
+t_lst				*mylst_new(int content);
+t_lst				*mylst_last(t_lst *lst);
+void				mylstadd_back(t_lst **lst, t_lst *new);
+void				mylstadd_front(t_lst **lst, t_lst *new);
+int					mylst_size(t_lst *lst);
+int					issorted(t_lst *stack);
 
 void				retour_erreur(void);
 char				*arg_1d(char **av);
 void				arg_check(int ac, char **av);
-int					issorted(t_node *stack);
-int					min_index(t_node *stack_a);
-int					max_index(t_node *stack_a);
+int					issorted(t_lst *stack);
+int					min_index(t_lst *stack_a);
+int					max_index(t_lst *stack_a);
 
-void				sa(t_node **stack);
-void				sb(t_node **stack);
-void				ss(t_node **stack_a, t_node **stack_b);
-void				pa(t_node **stack_b, t_node **stack_a);
-void				pb(t_node **stack_a, t_node **stack_b);
-void				ra(t_node **stack);
-void				rb(t_node **stack);
-void				rr(t_node **stack_a, t_node **stack_b);
-void				rra(t_node **stack);
-void				rrb(t_node **stack);
-void				rrr(t_node **stack_a, t_node **stack_b);
+void				sa(t_lst **stack);
+void				sb(t_lst **stack);
+void				ss(t_lst **stack_a, t_lst **stack_b);
+void				pa(t_lst **stack_b, t_lst **stack_a);
+void				pb(t_lst **stack_a, t_lst **stack_b);
+void				ra(t_lst **stack);
+void				rb(t_lst **stack);
+void				rr(t_lst **stack_a, t_lst **stack_b);
+void				rra(t_lst **stack);
+void				rrb(t_lst **stack);
+void				rrr(t_lst **stack_a, t_lst **stack_b);
 
-void				sort_tree(t_node **stack_a);
-void				sort_five(t_node **stack_a, t_node **stack_b, int size);
-void				large_sort_100(t_node **stack_a, t_node **stack_b,
-						int size);
+void				sort_tree(t_lst **stack_a);
+void				sort_five(t_lst **stack_a, t_lst **stack_b, int size);
+void				large_sort_100(t_lst **stack_a, t_lst **stack_b,
+						t_all *a);
 
-void				affiche_stack(t_node *stack_a);
+void				affiche_stack(t_lst *stack_a);
 
 #endif

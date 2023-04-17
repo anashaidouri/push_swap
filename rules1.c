@@ -6,17 +6,17 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:53:42 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/04 11:42:58 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_node **stack)
+void	ra(t_lst **stack)
 {
-	t_node	*first;
-	t_node	*temp;
-	t_node	*last;
+	t_lst	*first;
+	t_lst	*temp;
+	t_lst	*last;
 
 	if (stack != NULL)
 	{
@@ -30,11 +30,11 @@ void	ra(t_node **stack)
 	}
 }
 
-void	rb(t_node **stack)
+void	rb(t_lst **stack)
 {
-	t_node	*first;
-	t_node	*temp;
-	t_node	*last;
+	t_lst	*first;
+	t_lst	*temp;
+	t_lst	*last;
 
 	if (stack != NULL)
 	{
@@ -48,11 +48,11 @@ void	rb(t_node **stack)
 	}
 }
 
-void	rr(t_node **stack_a, t_node **stack_b)
+void	rr(t_lst **stack_a, t_lst **stack_b)
 {
-	t_node	*first;
-	t_node	*temp;
-	t_node	*last;
+	t_lst	*first;
+	t_lst	*temp;
+	t_lst	*last;
 
 	if (stack_a != NULL)
 	{

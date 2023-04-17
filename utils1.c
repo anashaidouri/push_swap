@@ -6,16 +6,16 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 13:24:10 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/03/26 13:38:38 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	deallocate(t_node **root)
+void	deallocate(t_lst **root)
 {
-	t_node	*curr;
-	t_node	*temp;
+	t_lst	*curr;
+	t_lst	*temp;
 
 	curr = *root;
 	while (curr != NULL)

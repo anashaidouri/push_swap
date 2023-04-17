@@ -6,13 +6,13 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:13:49 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/04 13:53:42 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_node **stack)
+void	sa(t_lst **stack)
 {
 	int	tmp;
 
@@ -22,7 +22,7 @@ void	sa(t_node **stack)
 	ft_printf("sa\n");
 }
 
-void	sb(t_node **stack)
+void	sb(t_lst **stack)
 {
 	int	tmp;
 
@@ -32,16 +32,16 @@ void	sb(t_node **stack)
 	ft_printf("sb\n");
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	ss(t_lst **stack_a, t_lst **stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
 	ft_printf("ss\n");
 }
 
-void	pa(t_node **stack_a, t_node **stack_b)
+void	pa(t_lst **stack_a, t_lst **stack_b)
 {
-	t_node	*help;
+	t_lst	*help;
 
 	if (stack_b == NULL)
 		return ;
@@ -52,9 +52,9 @@ void	pa(t_node **stack_a, t_node **stack_b)
 	ft_printf("pa\n");
 }
 
-void	pb(t_node **stack_a, t_node **stack_b)
+void	pb(t_lst **stack_a, t_lst **stack_b)
 {
-	t_node	*help;
+	t_lst	*help;
 
 	if (stack_a == NULL)
 		return ;

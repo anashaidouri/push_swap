@@ -6,15 +6,15 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:59:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/14 14:23:37 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	issorted(t_node *stack)
+int	issorted(t_lst *stack)
 {
-	t_node	*curr;
+	t_lst	*curr;
 	int		tmp;
 
 	curr = stack;
@@ -32,7 +32,7 @@ int	issorted(t_node *stack)
 	return (tmp);
 }
 
-int	min_index(t_node *stack_a)
+int	min_index(t_lst *stack_a)
 {
 	int	index;
 	int	min;
@@ -54,7 +54,7 @@ int	min_index(t_node *stack_a)
 	return (i);
 }
 
-int	max_index(t_node *stack_a)
+int	max_index(t_lst *stack_a)
 {
 	int	index;
 	int	max;

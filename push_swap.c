@@ -6,17 +6,17 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/16 16:51:28 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*load_data(t_all x)
+t_lst	*load_data(t_all x)
 {
 	int		i;
-	t_node	*stack;
-	t_node	*new;
+	t_lst	*stack;
+	t_lst	*new;
 	int		tmp;
 
 	stack = NULL;
@@ -31,7 +31,7 @@ t_node	*load_data(t_all x)
 	return (stack);
 }
 
-void	affiche_stack(t_node *stack_a)
+void	affiche_stack(t_lst *stack_a)
 {
 	while (stack_a != NULL)
 	{
@@ -43,8 +43,8 @@ void	affiche_stack(t_node *stack_a)
 int	main(int ac, char **av)
 {
 	t_all	x;
-	t_node	*stack_a;
-	t_node	*stack_b;
+	t_lst	*stack_a;
+	t_lst	*stack_b;
 
 	stack_b = NULL;
 	if (ac > 1)
@@ -65,8 +65,7 @@ int	main(int ac, char **av)
 				sort_five(&stack_a, &stack_b, x.size);
 			if (x.size > 5 && x.size <= 100)
 			{
-				large_sort_100(&stack_a, &stack_b, x.size);
-
+				large_sort_100(&stack_a, &stack_b, &x);
 			}
 			// printf("-------------------\n");
 			// affiche_stack(stack_a);

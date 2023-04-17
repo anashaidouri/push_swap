@@ -6,13 +6,13 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 13:58:09 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/07 17:49:01 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	test(t_node **stack_a, int a, int b, int c)
+void	test(t_lst **stack_a, int a, int b, int c)
 {
 	if (b > c && c > a)
 	{
@@ -32,10 +32,10 @@ void	test(t_node **stack_a, int a, int b, int c)
 	}
 }
 
-void	sort_tree(t_node **stack_a)
+void	sort_tree(t_lst **stack_a)
 {
-	t_node	*head;
-	t_node	*second;
+	t_lst	*head;
+	t_lst	*second;
 	int		a;
 	int		b;
 	int		c;
@@ -51,7 +51,7 @@ void	sort_tree(t_node **stack_a)
 	}
 }
 
-void	find_min_and_push(t_node **stack_a, t_node **stack_b, int size)
+void	find_min_and_push(t_lst **stack_a, t_lst **stack_b, int size)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ void	find_min_and_push(t_node **stack_a, t_node **stack_b, int size)
 	}
 }
 
-void	sort_five(t_node **stack_a, t_node **stack_b, int size)
+void	sort_five(t_lst **stack_a, t_lst **stack_b, int size)
 {
 	find_min_and_push(stack_a, stack_b, size);
 	sort_tree(stack_a);

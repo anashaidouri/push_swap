@@ -6,17 +6,17 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 10:47:48 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/03/26 13:27:10 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*mylst_new(int content)
+t_lst	*mylst_new(int content)
 {
-	t_node	*a;
+	t_lst	*a;
 
-	a = malloc(sizeof(t_node));
+	a = malloc(sizeof(t_lst));
 	if (!a)
 		return (NULL);
 	a->content = content;
@@ -24,7 +24,7 @@ t_node	*mylst_new(int content)
 	return (a);
 }
 
-t_node	*mylst_last(t_node *lst)
+t_lst	*mylst_last(t_lst *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -33,7 +33,7 @@ t_node	*mylst_last(t_node *lst)
 	return (lst);
 }
 
-void	mylstadd_back(t_node **lst, t_node *new)
+void	mylstadd_back(t_lst **lst, t_lst *new)
 {
 	if (*lst == NULL)
 		*lst = new;
@@ -43,7 +43,7 @@ void	mylstadd_back(t_node **lst, t_node *new)
 	}
 }
 
-void	mylstadd_front(t_node **lst, t_node *new)
+void	mylstadd_front(t_lst **lst, t_lst *new)
 {
 	if (*lst == NULL)
 		*lst = mylst_new(new->content);
@@ -54,7 +54,7 @@ void	mylstadd_front(t_node **lst, t_node *new)
 	}
 }
 
-int	mylst_size(t_node *lst)
+int	mylst_size(t_lst *lst)
 {
 	int	len;
 
@@ -71,10 +71,10 @@ int	mylst_size(t_node *lst)
 
 // int	main(void)
 // {
-// 	t_node	*root;
-// 	t_node	*curr;
-// 	t_node	*curr2;
-// 	t_node	*i;
+// 	t_lst	*root;
+// 	t_lst	*curr;
+// 	t_lst	*curr2;
+// 	t_lst	*i;
 
 // 	root = mylst_new(1);
 // 	curr = mylst_new(2);
