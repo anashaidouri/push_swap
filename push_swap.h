@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/07 17:49:26 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:41:48 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char				*arg_1d(char **av);
 void				arg_check(int ac, char **av);
 int					issorted(t_node *stack);
 int					min_index(t_node *stack_a);
+int					max_index(t_node *stack_a);
 
 void				sa(t_node **stack);
 void				sb(t_node **stack);
@@ -58,6 +59,8 @@ void				rrr(t_node **stack_a, t_node **stack_b);
 
 void				sort_tree(t_node **stack_a);
 void				sort_five(t_node **stack_a, t_node **stack_b, int size);
+void				large_sort_100(t_node **stack_a, t_node **stack_b,
+						int size);
 
 void				affiche_stack(t_node *stack_a);
 
