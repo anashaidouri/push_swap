@@ -5,32 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/30 23:41:00 by ahaidour          #+#    #+#              #
-#    Updated: 2023/04/19 16:18:54 by ahaidour         ###   ########.fr        #
+#    Created: 2022/11/04 16:58:26 by ahaidour          #+#    #+#              #
+#    Updated: 2023/02/28 09:44:10 by ahaidour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
 
-SRC =  ft_libft/ft_atoi.c ft_libft/ft_split.c ft_libft/ft_substr.c ft_libft/ft_calloc.c ft_libft/ft_bzero.c ft_printf/handle_conversion.c\
-		ft_printf/ft_putchar.c ft_printf/ft_putnbr.c ft_printf/ft_putnbr_hex.c ft_printf/ft_putnbr_unsigned.c ft_printf/ft_putstr.c\
-		ft_printf/ft_printf.c ft_printf/ft_strlen_p.c Check_arg.c push_swap.c ft_libft/ft_strjoin.c ft_libft/ft_strlen.c\
-		ft_libft/ft_strcmp.c erreur.c utils.c utils1.c small_sort.c rules.c rules1.c rules2.c sorts_utils.c\
-		large_sort.c
-OBJ = $(SRC:.c=.o)
+SRC = ft_putnbr.c ft_putnbr_unsigned.c ft_strlen_p.c handle_conversion.c\
+ft_printf.c ft_putchar.c ft_putnbr_hex.c ft_putstr.c
+
+OBJ = ft_putnbr.o ft_putnbr_unsigned.o ft_strlen_p.o handle_conversion.o\
+ft_printf.o ft_putchar.o ft_putnbr_hex.o ft_putstr.o
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	ar -rc $(NAME) $(OBJ)
 
 clean:
-	@$(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all

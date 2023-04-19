@@ -6,14 +6,14 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:19:10 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
+# include "ft_libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -64,8 +64,7 @@ void				rrr(t_lst **stack_a, t_lst **stack_b);
 
 void				sort_tree(t_lst **stack_a);
 void				sort_five(t_lst **stack_a, t_lst **stack_b, int size);
-void				large_sort_100(t_lst **stack_a, t_lst **stack_b,
-						t_all *a);
+void				large_sort_100(t_lst **stack_a, t_lst **stack_b, t_all *a);
 
 void				affiche_stack(t_lst *stack_a);
 
