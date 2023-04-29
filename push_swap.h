@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/19 16:19:10 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:38:35 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,25 @@ typedef struct t_lst
 {
 	int				content;
 	struct t_lst	*next;
+	int				index;
 }					t_lst;
 
-typedef struct all
+typedef struct t_info
 {
-	char			*args;
-	char			**arg_2d;
-	int				size;
 	int				div;
 	int				mid;
 	int				offset;
 	int				start;
 	int				end;
+	int				s;
+	int				position;
+	int				*arr;
+}					t_info;
+typedef struct all
+{
+	char			*args;
+	char			**arg_2d;
+	int				size;
 }					t_all;
 
 t_lst				*mylst_new(int content);
@@ -41,6 +48,7 @@ t_lst				*mylst_last(t_lst *lst);
 void				mylstadd_back(t_lst **lst, t_lst *new);
 void				mylstadd_front(t_lst **lst, t_lst *new);
 int					mylst_size(t_lst *lst);
+t_lst				*ft_lstlast(t_lst *lst);
 int					issorted(t_lst *stack);
 
 void				retour_erreur(void);
@@ -64,7 +72,7 @@ void				rrr(t_lst **stack_a, t_lst **stack_b);
 
 void				sort_tree(t_lst **stack_a);
 void				sort_five(t_lst **stack_a, t_lst **stack_b, int size);
-void				large_sort_100(t_lst **stack_a, t_lst **stack_b, t_all *a);
+void				large_sort(t_lst **stack_a, t_lst **stack_b, t_all *a);
 
 void				affiche_stack(t_lst *stack_a);
 

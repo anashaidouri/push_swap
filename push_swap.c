@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:41:50 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int ac, char **av)
 		x.size = mylst_size(stack_a);
 		if (!issorted(stack_a))
 		{
+			// printf("stack_a-------------------\n");
 			// affiche_stack(stack_a);
 			// printf("-------------------\n");
 			if (x.size <= 3)
@@ -65,10 +66,12 @@ int	main(int ac, char **av)
 				sort_five(&stack_a, &stack_b, x.size);
 			if (x.size > 5 && x.size <= 100)
 			{
-				large_sort_100(&stack_a, &stack_b, &x);
+				large_sort(&stack_a, &stack_b, &x);
 			}
-			// printf("-------------------\n");
+			// printf("stack_a-------------------\n");
 			// affiche_stack(stack_a);
+			// printf("stack_b-------------------\n");
+			// affiche_stack(stack_b);
 		}
 	}
 	else

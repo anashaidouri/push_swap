@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:53:42 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:27:17 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	rb(t_lst **stack)
 		(*last).next = (first);
 		(*first).next = NULL;
 		(*stack) = temp;
-		ft_printf("ra\n");
+		ft_printf("rb\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 13:24:10 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:38:15 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,13 @@ void	deallocate(t_lst **root)
 		free(temp);
 	}
 	*root = NULL;
+}
+
+t_lst	*ft_lstlast(t_lst *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
