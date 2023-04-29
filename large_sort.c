@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:30:53 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/29 10:41:46 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:18:37 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,14 +135,14 @@ int	get_pos(t_lst *stack_a, int content)
 	return (position);
 }
 
-int	get_index(t_info arr, int content)
+int	get_index(t_info info, int content)
 {
 	int	index;
 
 	index = 0;
-	while (index < arr.s)
+	while (index < info.s)
 	{
-		if (arr.arr[index] == content)
+		if (info.arr[index] == content)
 			return (index);
 		index++;
 	}
@@ -177,9 +177,50 @@ int	look_for_next(t_lst *stack, int index)
 	return (i);
 }
 
+int	ft_lstsize(t_lst *lst)
+{
+	int	len;
+
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
+}
+
+
+int	search_next(t_lst *stack, int index)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		if (stack->index == index)
+			return (i);
+		i++;
+		stack = stack->next;
+	}
+	return (i);
+}
+int	is_sorted(t_lst *a)
+{
+	while (a->next)
+	{
+		if (a->content > a->next->content)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 {
-	while (*stack_b || !issorted(*stack_a))
+	while (*stack_b || !is_sorted(*stack_a))
 	{
 		if (*stack_b && (*stack_b)->index == (*stack_a)->index - 1)
 			pa(stack_a, stack_b);
@@ -191,54 +232,40 @@ void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 			pa(stack_a, stack_b);
 			ra(stack_a);
 		}
-		else if (mylst_size(*stack_b) > 1)
+		else if (ft_lstsize(*stack_b) > 1)
 		{
-			if (look_for_next(*stack_b, (*stack_a)->index
-					- 1) < mylst_size(*stack_b) / 2)
+			if (search_next(*stack_b, (*stack_a)->index - 1) <= ft_lstsize(*stack_b) / 2)
 				rb(stack_b);
+
 			else
+			{
 				rrb(stack_b);
+				break;
+			}
+
 		}
 	}
 }
 
-// void	push_back(t_list **a, t_list **b, int size)
-// {
-// 	while (*b || !is_sorted(*a))
-// 	{
-// 		if (*b && (*b)->index == (*a)->index - 1)
-// 			push(b, a, "pa");
-// 		else if (ft_lstlast(*a)->index == (*a)->index - 1)
-// 			reverse_rotate(a, "rra");
-// 		else if (*b && (ft_lstlast(*a)->index == size - 1
-// 				|| (*b)->index > ft_lstlast(*a)->index))
-// 		{
-// 			push(b, a, "pa");
-// 			rotate(a, "ra");
-// 		}
-// 		else if (ft_lstsize(*b) > 1)
-// 		{
-// 			if (search_next(*b, (*a)->index - 1) < ft_lstsize(*b) / 2)
-// 				rotate(b, "rb");
-// 			else
-// 				reverse_rotate(b, "rrb");
-// 		}
-// 	}
-// }
 
 void	large_sort(t_lst **stack_a, t_lst **stack_b, t_all *a)
 {
 	t_info	info;
-	// int		max;
+	int		max;
+
 	info = informations(*stack_a, a);
+	stack_index(stack_a, info);
+
 	push_to_b(stack_a, stack_b, info);
-	// printf("stack_b\n");
-	// affiche_stack(*stack_b);
-	// stack_index(stack_a, info);
-	// max = max_stack_b(*stack_b);
-	// info.position = get_pos(*stack_b, max);
-	// while (info.position-- > 0)
-	// 	rb(stack_b);
-	// pa(stack_a, stack_b);
-	// back_to_a(stack_a, stack_b, info.s);
+	max = max_stack_b(*stack_b);
+	info.position = get_pos(*stack_b, max);
+	while (info.position-- > 0)
+		rb(stack_b);
+	pa(stack_a, stack_b);
+	back_to_a(stack_a, stack_b, info.s);
+	printf("stack_a\n");
+	affiche_stack(*stack_a);
+	printf("stack_b\n");
+	affiche_stack(*stack_b);
+	printf("-----------\n");
 }
