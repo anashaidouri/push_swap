@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/29 16:21:19 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:56:08 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	main(int ac, char **av)
 		x.args = arg_1d(av);
 		x.arg_2d = ft_split(x.args, ' ');
 		stack_a = load_data(x);
-		// stack_b = load_data(x);
 		x.size = mylst_size(stack_a);
 		if (!issorted(stack_a))
 		{
@@ -78,21 +77,3 @@ int	main(int ac, char **av)
 		retour_erreur();
 	return (0);
 }
-
-// printf("stack_a\n");
-// affiche_stack(stack_a);
-// printf("stack_b\n");
-// affiche_stack(stack_b);
-// printf("-------------------\n");
-// rra(&stack_a);
-// ss(&stack_a, &stack_b);
-// pa(&stack_a, &stack_b);
-// pb(&stack_a, &stack_b);
-// ra(&stack_a);
-// rb(&stack_a);
-// rrr(&stack_a, &stack_b);
-
-// printf("stack_a\n");
-// affiche_stack(stack_a);
-// printf("stack_b\n");
-// affiche_stack(stack_b);

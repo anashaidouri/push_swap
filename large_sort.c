@@ -6,11 +6,26 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:30:53 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/29 16:18:37 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:49:09 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_lstsize(t_lst *lst)
+{
+	int	len;
+
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
+}
 
 void	sort_arr(int *arr, int size)
 {
@@ -21,7 +36,7 @@ void	sort_arr(int *arr, int size)
 	i = 0;
 	while (i < size)
 	{
-		j = i + 1;
+		j = i;
 		while (j < size)
 		{
 			if (arr[i] > arr[j])
@@ -36,45 +51,46 @@ void	sort_arr(int *arr, int size)
 	}
 }
 
-int	*fill_sort_array(t_lst *stack_a, int size)
+t_arr	fill_sort_array(t_lst *stack_a)
 {
-	int	*arr;
-	int	i;
+	t_arr	arr;
+	int		i;
 
-	arr = malloc(sizeof(int) * (size + 1));
-	i = 0;
-	while (stack_a != NULL)
+	i = -1;
+	arr.size = ft_lstsize(stack_a);
+	arr.table = malloc(sizeof(int) * (arr.size + 1));
+	while (stack_a)
 	{
-		arr[i] = stack_a->content;
-		i++;
+		arr.table[++i] = stack_a->content;
 		stack_a = stack_a->next;
 	}
-	sort_arr(arr, size);
+	sort_arr(arr.table, arr.size);
 	return (arr);
 }
 
-int	is_not_empty(t_lst *stack_a, t_info info)
+int	is_not_empty(t_lst *stack_a, t_arr arr, t_info info)
 {
 	while (stack_a)
 	{
-		if (stack_a->content >= info.arr[info.start] && stack_a->content <= info.arr[info.end])
+		if (stack_a->content >= arr.table[info.start]
+			&& stack_a->content <= arr.table[info.end])
 			return (1);
 		stack_a = stack_a->next;
 	}
 	return (0);
 }
 
-void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_info info)
+void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_arr arr, t_info info)
 {
 	while (*stack_a)
 	{
-		while(is_not_empty(*stack_a, info))
+		while (is_not_empty(*stack_a, arr, info))
 		{
-			if ((*stack_a)->content >= info.arr[info.start]
-				&& (*stack_a)->content <= info.arr[info.end])
+			if ((*stack_a)->content >= arr.table[info.start]
+				&& (*stack_a)->content <= arr.table[info.end])
 			{
 				pb(stack_a, stack_b);
-				if ((*stack_b)->content < info.arr[info.mid])
+				if ((*stack_b)->content < arr.table[info.mid])
 					rb(stack_b);
 			}
 			else
@@ -84,28 +100,25 @@ void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_info info)
 		info.end += info.offset;
 		if (info.start < 0)
 			info.start = 0;
-		if (info.end >= info.s)
-			info.end = info.s - 1;
+		if (info.end >= arr.size)
+			info.end = arr.size - 1;
 	}
 }
 
-t_info	informations(t_lst *stack_a, t_all *a)
+t_info	informations(t_arr *arr)
 {
 	t_info	inf;
 
-	inf.mid = a->size / 2 - 1;
-	inf.arr = fill_sort_array(stack_a, a->size);
-	inf.s = a->size;
-	if (inf.s <= 100)
-		inf.div = 5;
+	inf.mid = arr->size / 2 - 1;
+	if (arr->size <= 100)
+		inf.div = 8;
 	else
 		inf.div = 11;
-	inf.offset = inf.s / inf.div;
+	inf.offset = arr->size / inf.div;
 	inf.start = inf.mid - inf.offset;
 	inf.end = inf.mid + inf.offset;
 	return (inf);
 }
-
 int	max_stack_b(t_lst *stack_b)
 {
 	int	max;
@@ -119,7 +132,6 @@ int	max_stack_b(t_lst *stack_b)
 	}
 	return (max);
 }
-
 int	get_pos(t_lst *stack_a, int content)
 {
 	int	position;
@@ -134,29 +146,28 @@ int	get_pos(t_lst *stack_a, int content)
 	}
 	return (position);
 }
-
-int	get_index(t_info info, int content)
+int	get_index(t_arr arr, int content)
 {
 	int	index;
 
 	index = 0;
-	while (index < info.s)
+	while (index < arr.size)
 	{
-		if (info.arr[index] == content)
+		if (arr.table[index] == content)
 			return (index);
 		index++;
 	}
 	return (index);
 }
 
-void	stack_index(t_lst **stack, t_info info)
+void	stack_index(t_lst **stack, t_arr arr)
 {
 	t_lst	*head;
 
 	head = *stack;
 	while ((*stack) != NULL)
 	{
-		(*stack)->index = get_index(info, (*stack)->content);
+		(*stack)->index = get_index(arr, (*stack)->content);
 		(*stack) = (*stack)->next;
 	}
 	*stack = head;
@@ -176,23 +187,6 @@ int	look_for_next(t_lst *stack, int index)
 	}
 	return (i);
 }
-
-int	ft_lstsize(t_lst *lst)
-{
-	int	len;
-
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
-}
-
-
 int	search_next(t_lst *stack, int index)
 {
 	int	i;
@@ -217,13 +211,14 @@ int	is_sorted(t_lst *a)
 	}
 	return (1);
 }
-
 void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 {
 	while (*stack_b || !is_sorted(*stack_a))
 	{
 		if (*stack_b && (*stack_b)->index == (*stack_a)->index - 1)
+		{
 			pa(stack_a, stack_b);
+		}
 		else if (ft_lstlast(*stack_a)->index == (*stack_a)->index - 1)
 			rra(stack_a);
 		else if (*stack_b && (ft_lstlast(*stack_a)->index == size - 1
@@ -234,38 +229,36 @@ void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 		}
 		else if (ft_lstsize(*stack_b) > 1)
 		{
-			if (search_next(*stack_b, (*stack_a)->index - 1) <= ft_lstsize(*stack_b) / 2)
+			if (search_next(*stack_b, (*stack_a)->index
+					- 1) < ft_lstsize(*stack_b) / 2)
 				rb(stack_b);
-
 			else
 			{
 				rrb(stack_b);
-				break;
 			}
-
 		}
 	}
 }
 
-
-void	large_sort(t_lst **stack_a, t_lst **stack_b, t_all *a)
+void	large_sort(t_lst **stack_a, t_lst **stack_b)
 {
 	t_info	info;
+	t_arr	table;
 	int		max;
 
-	info = informations(*stack_a, a);
-	stack_index(stack_a, info);
-
-	push_to_b(stack_a, stack_b, info);
+	table = fill_sort_array(*stack_a);
+	stack_index(stack_a, table);
+	info = informations(&table);
+	push_to_b(stack_a, stack_b, table, info);
 	max = max_stack_b(*stack_b);
 	info.position = get_pos(*stack_b, max);
 	while (info.position-- > 0)
 		rb(stack_b);
 	pa(stack_a, stack_b);
-	back_to_a(stack_a, stack_b, info.s);
-	printf("stack_a\n");
-	affiche_stack(*stack_a);
-	printf("stack_b\n");
-	affiche_stack(*stack_b);
-	printf("-----------\n");
+	back_to_a(stack_a, stack_b, table.size);
+	// printf("stack_a\n");
+	// affiche_stack(*stack_a);
+	// printf("stack_b\n");
+	// affiche_stack(*stack_b);
+	// printf("-----------\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/03/27 17:00:33 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:55:41 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,30 +84,6 @@ void	is_empty(int ac, char **av)
 		i++;
 	}
 }
-
-// void	is_empty(int ac, char **av)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (i < ac)
-// 	{
-// 		if (ft_strlen(av[i]) == 0)
-// 			retour_erreur();
-// 		j = 0;
-// 		while (av[i][j])
-// 		{
-// 			if (av[i][j] != 32 && av[i][j] != '\t')
-// 				j = -2;
-// 			j++;
-// 		}
-// 		if (j != -1)
-// 			retour_erreur();
-// 		i++;
-// 	}
-// }
-
 void	arg_check(int ac, char **av)
 {
 	int		i;

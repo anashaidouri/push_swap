@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/28 17:38:35 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/04/30 21:24:03 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ typedef struct t_info
 	int				offset;
 	int				start;
 	int				end;
-	int				s;
 	int				position;
-	int				*arr;
 }					t_info;
 typedef struct all
 {
@@ -42,6 +40,12 @@ typedef struct all
 	char			**arg_2d;
 	int				size;
 }					t_all;
+
+typedef struct s_arr
+{
+	int		*table;
+	int		size;
+}			t_arr;
 
 t_lst				*mylst_new(int content);
 t_lst				*mylst_last(t_lst *lst);
@@ -72,7 +76,7 @@ void				rrr(t_lst **stack_a, t_lst **stack_b);
 
 void				sort_tree(t_lst **stack_a);
 void				sort_five(t_lst **stack_a, t_lst **stack_b, int size);
-void				large_sort(t_lst **stack_a, t_lst **stack_b, t_all *a);
+void				large_sort(t_lst **stack_a, t_lst **stack_b);
 
 void				affiche_stack(t_lst *stack_a);
 
