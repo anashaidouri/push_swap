@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:30:53 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 11:49:09 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:38:14 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	is_not_empty(t_lst *stack_a, t_arr arr, t_info info)
 
 void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_arr arr, t_info info)
 {
+	// printf("start = %d, end = %d, mid = %d,offset = %d, size = %d\n", info.start, info.end, info.mid, info.offset, arr.size);
+	// exit(0);
 	while (*stack_a)
 	{
 		while (is_not_empty(*stack_a, arr, info))
@@ -111,7 +113,7 @@ t_info	informations(t_arr *arr)
 
 	inf.mid = arr->size / 2 - 1;
 	if (arr->size <= 100)
-		inf.div = 8;
+		inf.div = 5;
 	else
 		inf.div = 11;
 	inf.offset = arr->size / inf.div;
@@ -211,6 +213,25 @@ int	is_sorted(t_lst *a)
 	}
 	return (1);
 }
+void	reverse_rotate(t_lst **h, char *s)
+{
+	t_lst	*last;
+	t_lst	*p;
+
+	if (*h == NULL || (*h)->next == NULL)
+		return ;
+	last = *h;
+	while (last->next)
+	{
+		p = last;
+		last = last->next;
+	}
+	p->next = NULL;
+	last->next = *h;
+	*h = last;
+	if (s)
+		printf("%s\n", s);
+}
 void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 {
 	while (*stack_b || !is_sorted(*stack_a))
@@ -229,13 +250,11 @@ void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 		}
 		else if (ft_lstsize(*stack_b) > 1)
 		{
-			if (search_next(*stack_b, (*stack_a)->index
-					- 1) < ft_lstsize(*stack_b) / 2)
+			// printf("next = %d, lstsize = %d\n", search_next(*stack_b, (*stack_a)->index - 1), ft_lstsize(*stack_b) / 2);
+			if (search_next(*stack_b, (*stack_a)->index - 1) <= ft_lstsize(*stack_b) / 2)
 				rb(stack_b);
 			else
-			{
-				rrb(stack_b);
-			}
+				reverse_rotate(stack_b, "rrb");
 		}
 	}
 }
@@ -244,21 +263,21 @@ void	large_sort(t_lst **stack_a, t_lst **stack_b)
 {
 	t_info	info;
 	t_arr	table;
-	int		max;
+	// int		max;
 
 	table = fill_sort_array(*stack_a);
 	stack_index(stack_a, table);
 	info = informations(&table);
 	push_to_b(stack_a, stack_b, table, info);
-	max = max_stack_b(*stack_b);
-	info.position = get_pos(*stack_b, max);
-	while (info.position-- > 0)
-		rb(stack_b);
-	pa(stack_a, stack_b);
-	back_to_a(stack_a, stack_b, table.size);
-	// printf("stack_a\n");
-	// affiche_stack(*stack_a);
-	// printf("stack_b\n");
-	// affiche_stack(*stack_b);
-	// printf("-----------\n");
+	// max = max_stack_b(*stack_b);
+	// info.position = get_pos(*stack_b, max);
+	// printf("=================\n");
+	// while (info.position-- > 0)
+	// 	rb(stack_b);
+	// pa(stack_a, stack_b);
+	// back_to_a(stack_a, stack_b, table.size);
+	printf("stack_a\n");
+	affiche_stack(*stack_a);
+	printf("stack_b\n");
+	affiche_stack(*stack_b);
 }

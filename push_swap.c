@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/30 18:56:08 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:04:32 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ int	main(int ac, char **av)
 			// printf("-------------------\n");
 			if (x.size <= 3)
 				sort_tree(&stack_a);
-			if (x.size > 3 && x.size <= 5)
+			else if (x.size > 3 && x.size <= 5)
 				sort_five(&stack_a, &stack_b, x.size);
-			if (x.size > 5 && x.size <= 100)
-			{
-				large_sort(&stack_a, &stack_b, &x);
-			}
+			else
+				large_sort(&stack_a, &stack_b);
 			// printf("stack_a-------------------\n");
 			// affiche_stack(stack_a);
 			// printf("stack_b-------------------\n");
