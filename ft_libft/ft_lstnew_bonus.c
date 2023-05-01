@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   erreur.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 13:13:27 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:44 by ahaidour         ###   ########.fr       */
+/*   Created: 2022/10/25 08:18:36 by gloukas           #+#    #+#             */
+/*   Updated: 2023/05/01 14:01:45 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void	retour_erreur(void)
+t_lst	*ft_lstnew(int content)
 {
-	ft_printf("Error !!");
-	exit(EXIT_FAILURE);
+	t_lst	*n;
+
+	n = (t_lst *)malloc(sizeof(t_lst));
+	if (!n)
+		return (NULL);
+	n->content = content;
+	n->next = NULL;
+	return (n);
 }

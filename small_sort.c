@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 13:58:09 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:30:05 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	test(t_lst **stack_a, int a, int b, int c)
 {
 	if (b > c && c > a)
 	{
-		rra(stack_a);
-		sa(stack_a);
+		rr(stack_a, "rra");
+		sw(*stack_a, "sa");
 	}
 	else if (a > b && a < c)
-		sa(stack_a);
+		sw(*stack_a, "sa");
 	else if (a < b && a > c)
-		rra(stack_a);
+		rr(stack_a, "rra");
 	else if (a > b && a > c && b < c)
-		ra(stack_a);
+		r(stack_a, "ra");
 	else if (a > b && a > c && b > c)
 	{
-		sa(stack_a);
-		rra(stack_a);
+		sw(*stack_a, "sa");
+		rr(stack_a, "rra");
 	}
 }
 
@@ -51,7 +51,7 @@ void	sort_tree(t_lst **stack_a)
 	}
 }
 
-void	find_min_and_push(t_lst **stack_a, t_lst **stack_b, int size)
+void	find_min_and_p(t_lst **stack_a, t_lst **stack_b, int size)
 {
 	int	i;
 
@@ -62,19 +62,19 @@ void	find_min_and_push(t_lst **stack_a, t_lst **stack_b, int size)
 		{
 			while (i > 0)
 			{
-				ra(stack_a);
+				r(stack_a, "ra");
 				i--;
 			}
-			pb(stack_a, stack_b);
+			p(stack_a, stack_b, "pb");
 		}
 		else if (i > (size / 2))
 		{
 			while (i > 0)
 			{
-				ra(stack_a);
+				r(stack_a, "ra");
 				i--;
 			}
-			pb(stack_a, stack_b);
+			p(stack_a, stack_b, "pb");
 		}
 		size--;
 	}
@@ -82,11 +82,11 @@ void	find_min_and_push(t_lst **stack_a, t_lst **stack_b, int size)
 
 void	sort_five(t_lst **stack_a, t_lst **stack_b, int size)
 {
-	find_min_and_push(stack_a, stack_b, size);
+	find_min_and_p(stack_a, stack_b, size);
 	sort_tree(stack_a);
 	while (size > 3)
 	{
-		pa(stack_a, stack_b);
+		p(stack_b, stack_a, "pa");
 		size--;
 	}
 }

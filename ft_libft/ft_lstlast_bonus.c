@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   erreur.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 13:13:27 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:44 by ahaidour         ###   ########.fr       */
+/*   Created: 2022/10/25 08:19:45 by gloukas           #+#    #+#             */
+/*   Updated: 2023/05/01 14:01:23 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	retour_erreur(void)
+t_lst	*ft_lstlast(t_lst *lst)
 {
-	ft_printf("Error !!");
-	exit(EXIT_FAILURE);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

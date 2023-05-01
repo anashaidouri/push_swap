@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:32:29 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/03/04 21:36:24 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:01:45 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct t_lst
+{
+	int				content;
+	int				index;
+	struct t_lst	*next;
+}					t_lst;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -53,5 +60,15 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+void	ft_lstadd_back(t_lst **lst, t_lst *new);
+void	ft_lstadd_front(t_lst **lst, t_lst *new);
+void	ft_lstclear(t_lst **lst, void (*del)(void *));
+void	ft_lstdelone(t_lst *lst, void (*del)(void *));
+void	ft_lstiter(t_lst *lst, void (*f)(void *));
+t_lst	*ft_lstlast(t_lst *lst);
+t_lst	*ft_lstmap(t_lst *lst, void *(*f)(void *), void (*del)(void *));
+t_lst	*ft_lstnew(int content);
+int		ft_lstsize(t_lst *lst);
 
 #endif

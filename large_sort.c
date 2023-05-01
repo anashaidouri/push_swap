@@ -6,26 +6,11 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:30:53 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 13:38:14 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:43:19 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_lstsize(t_lst *lst)
-{
-	int	len;
-
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
-}
 
 void	sort_arr(int *arr, int size)
 {
@@ -68,35 +53,21 @@ t_arr	fill_sort_array(t_lst *stack_a)
 	return (arr);
 }
 
-int	is_not_empty(t_lst *stack_a, t_arr arr, t_info info)
-{
-	while (stack_a)
-	{
-		if (stack_a->content >= arr.table[info.start]
-			&& stack_a->content <= arr.table[info.end])
-			return (1);
-		stack_a = stack_a->next;
-	}
-	return (0);
-}
-
 void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_arr arr, t_info info)
 {
-	// printf("start = %d, end = %d, mid = %d,offset = %d, size = %d\n", info.start, info.end, info.mid, info.offset, arr.size);
-	// exit(0);
 	while (*stack_a)
 	{
-		while (is_not_empty(*stack_a, arr, info))
+		while (is_full(*stack_a, arr, info))
 		{
 			if ((*stack_a)->content >= arr.table[info.start]
 				&& (*stack_a)->content <= arr.table[info.end])
 			{
-				pb(stack_a, stack_b);
+				p(stack_a, stack_b, "pb");
 				if ((*stack_b)->content < arr.table[info.mid])
-					rb(stack_b);
+					r(stack_b, "rb");
 			}
 			else
-				ra(stack_a);
+				r(stack_a, "ra");
 		}
 		info.start -= info.offset;
 		info.end += info.offset;
@@ -107,154 +78,27 @@ void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_arr arr, t_info info)
 	}
 }
 
-t_info	informations(t_arr *arr)
-{
-	t_info	inf;
-
-	inf.mid = arr->size / 2 - 1;
-	if (arr->size <= 100)
-		inf.div = 5;
-	else
-		inf.div = 11;
-	inf.offset = arr->size / inf.div;
-	inf.start = inf.mid - inf.offset;
-	inf.end = inf.mid + inf.offset;
-	return (inf);
-}
-int	max_stack_b(t_lst *stack_b)
-{
-	int	max;
-
-	max = stack_b->content;
-	while (stack_b)
-	{
-		if (stack_b->content > max)
-			max = stack_b->content;
-		stack_b = stack_b->next;
-	}
-	return (max);
-}
-int	get_pos(t_lst *stack_a, int content)
-{
-	int	position;
-
-	position = 0;
-	while (stack_a)
-	{
-		if (stack_a->content == content)
-			return (position);
-		position++;
-		stack_a = stack_a->next;
-	}
-	return (position);
-}
-int	get_index(t_arr arr, int content)
-{
-	int	index;
-
-	index = 0;
-	while (index < arr.size)
-	{
-		if (arr.table[index] == content)
-			return (index);
-		index++;
-	}
-	return (index);
-}
-
-void	stack_index(t_lst **stack, t_arr arr)
-{
-	t_lst	*head;
-
-	head = *stack;
-	while ((*stack) != NULL)
-	{
-		(*stack)->index = get_index(arr, (*stack)->content);
-		(*stack) = (*stack)->next;
-	}
-	*stack = head;
-}
-
-int	look_for_next(t_lst *stack, int index)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		if (stack->index == index)
-			return (i);
-		i++;
-		stack = stack->next;
-	}
-	return (i);
-}
-int	search_next(t_lst *stack, int index)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		if (stack->index == index)
-			return (i);
-		i++;
-		stack = stack->next;
-	}
-	return (i);
-}
-int	is_sorted(t_lst *a)
-{
-	while (a->next)
-	{
-		if (a->content > a->next->content)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-void	reverse_rotate(t_lst **h, char *s)
-{
-	t_lst	*last;
-	t_lst	*p;
-
-	if (*h == NULL || (*h)->next == NULL)
-		return ;
-	last = *h;
-	while (last->next)
-	{
-		p = last;
-		last = last->next;
-	}
-	p->next = NULL;
-	last->next = *h;
-	*h = last;
-	if (s)
-		printf("%s\n", s);
-}
 void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 {
-	while (*stack_b || !is_sorted(*stack_a))
+	while (*stack_b || !issorted(*stack_a))
 	{
 		if (*stack_b && (*stack_b)->index == (*stack_a)->index - 1)
-		{
-			pa(stack_a, stack_b);
-		}
+			p(stack_b, stack_a, "pa");
 		else if (ft_lstlast(*stack_a)->index == (*stack_a)->index - 1)
-			rra(stack_a);
+			rr(stack_a, "rra");
 		else if (*stack_b && (ft_lstlast(*stack_a)->index == size - 1
-					|| (*stack_b)->index > ft_lstlast(*stack_a)->index))
+				|| (*stack_b)->index > ft_lstlast(*stack_a)->index))
 		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
+			p(stack_b, stack_a, "pa");
+			r(stack_a, "ra");
 		}
 		else if (ft_lstsize(*stack_b) > 1)
 		{
-			// printf("next = %d, lstsize = %d\n", search_next(*stack_b, (*stack_a)->index - 1), ft_lstsize(*stack_b) / 2);
-			if (search_next(*stack_b, (*stack_a)->index - 1) <= ft_lstsize(*stack_b) / 2)
-				rb(stack_b);
+			if (look_for_next(*stack_b, (*stack_a)->index
+					- 1) <= ft_lstsize(*stack_b) / 2)
+				r(stack_b, "rb");
 			else
-				reverse_rotate(stack_b, "rrb");
+				rr(stack_b, "rrb");
 		}
 	}
 }
@@ -263,21 +107,17 @@ void	large_sort(t_lst **stack_a, t_lst **stack_b)
 {
 	t_info	info;
 	t_arr	table;
-	// int		max;
+	int		max;
 
 	table = fill_sort_array(*stack_a);
-	stack_index(stack_a, table);
+	give_index(stack_a, table);
 	info = informations(&table);
 	push_to_b(stack_a, stack_b, table, info);
-	// max = max_stack_b(*stack_b);
-	// info.position = get_pos(*stack_b, max);
-	// printf("=================\n");
-	// while (info.position-- > 0)
-	// 	rb(stack_b);
-	// pa(stack_a, stack_b);
-	// back_to_a(stack_a, stack_b, table.size);
-	printf("stack_a\n");
-	affiche_stack(*stack_a);
-	printf("stack_b\n");
-	affiche_stack(*stack_b);
+	max = max_stack_b(*stack_b);
+	info.position = get_pos(*stack_b, max);
+	while (info.position-- > 0)
+		r(stack_b, "rb");
+	p(stack_b, stack_a, "pa");
+	back_to_a(stack_a, stack_b, table.size);
+	free(table.table);
 }

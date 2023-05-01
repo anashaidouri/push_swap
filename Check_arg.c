@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/30 18:55:41 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:44:20 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*arg_1d(char **av)
 	while (args[i])
 	{
 		if ((args[i] == '-' || args[i] == '+') && (args[i + 1] == '-' || args[i
-				+ 1] == '+'))
+					+ 1] == '+'))
 			retour_erreur();
 		i++;
 	}
@@ -55,6 +55,7 @@ void	is_dup(char *a)
 		}
 		i++;
 	}
+	ft_free(arg);
 }
 
 void	is_empty(int ac, char **av)
@@ -84,6 +85,7 @@ void	is_empty(int ac, char **av)
 		i++;
 	}
 }
+
 void	arg_check(int ac, char **av)
 {
 	int		i;

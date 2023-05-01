@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   erreur.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 13:13:27 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:44 by ahaidour         ###   ########.fr       */
+/*   Created: 2022/10/25 08:21:21 by gloukas           #+#    #+#             */
+/*   Updated: 2023/05/01 14:01:23 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void	retour_erreur(void)
+void	ft_lstclear(t_lst **lst, void (*del)(void *))
 {
-	ft_printf("Error !!");
-	exit(EXIT_FAILURE);
+	t_lst	*p;
+
+	if (!*lst || !lst || !del)
+		return ;
+	p = *lst;
+	while (p)
+	{
+		p = p->next;
+		ft_lstdelone(*lst, del);
+		*lst = p;
+	}
 }

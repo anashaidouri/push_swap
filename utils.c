@@ -5,88 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 10:47:48 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/04/17 17:29:00 by ahaidour         ###   ########.fr       */
+/*   Created: 2023/05/01 14:26:10 by ahaidour          #+#    #+#             */
+/*   Updated: 2023/05/01 15:26:18 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_lst	*mylst_new(int content)
+void	sw(t_lst *stack, char *s)
 {
-	t_lst	*a;
+	int	x;
 
-	a = malloc(sizeof(t_lst));
-	if (!a)
-		return (NULL);
-	a->content = content;
-	a->next = NULL;
-	return (a);
+	if (!stack)
+		return ;
+	x = stack->content;
+	stack->content = stack->next->content;
+	stack->next->content = x;
+	if (s)
+		ft_printf("%s\n", s);
 }
 
-t_lst	*mylst_last(t_lst *lst)
+void	swap_both(t_lst *satck_a, t_lst *stack_b)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	sw(satck_a, NULL);
+	sw(stack_b, NULL);
+	ft_printf("%s\n", "ss");
 }
 
-void	mylstadd_back(t_lst **lst, t_lst *new)
+void	p(t_lst **from, t_lst **to, char *s)
 {
-	if (*lst == NULL)
-		*lst = new;
-	else
-	{
-		mylst_last(*lst)->next = new;
-	}
+	t_lst	*tmp;
+
+	if (!(*from))
+		return ;
+	tmp = (*from)->next;
+	ft_lstadd_front(to, *from);
+	*from = tmp;
+	ft_printf("%s\n", s);
 }
 
-void	mylstadd_front(t_lst **lst, t_lst *new)
+void	r(t_lst **stack, char *s)
 {
-	if (*lst == NULL)
-		*lst = mylst_new(new->content);
-	else
-	{
-		new->next = *lst;
-		*lst = new;
-	}
+	t_lst	*temp;
+
+	if (!(*stack))
+		return ;
+	temp = *stack;
+	*stack = (*stack)->next;
+	temp->next = NULL;
+	ft_lstadd_back(stack, temp);
+	if (s)
+		ft_printf("%s\n", s);
 }
 
-int	mylst_size(t_lst *lst)
+void	rotate_both(t_lst **stack_a, t_lst **stack_b)
 {
-	int	len;
-
-	len = 0;
-	if (lst == NULL)
-		return (0);
-	while (lst != NULL)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+	r(stack_a, NULL);
+	r(stack_b, NULL);
+	ft_printf("%s\n", "rr");
 }
-
-// int	main(void)
-// {
-// 	t_lst	*root;
-// 	t_lst	*curr;
-// 	t_lst	*curr2;
-// 	t_lst	*i;
-
-// 	root = mylst_new(1);
-// 	curr = mylst_new(2);
-// 	curr2 = mylst_new(3);
-// 	mylstadd_back(&root, curr);
-// 	mylstadd_back(&root, curr2);
-// 	deallocate(&root);
-// 	i = root;
-// 	while (i != NULL)
-// 	{
-// 		printf("%d\n", i->content);
-// 		i = i->next;
-// 	}
-// 	return (0);
-// }

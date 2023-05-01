@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   erreur.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 13:13:27 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:44 by ahaidour         ###   ########.fr       */
+/*   Created: 2022/10/25 08:19:29 by gloukas           #+#    #+#             */
+/*   Updated: 2023/05/01 14:01:23 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	retour_erreur(void)
+int	ft_lstsize(t_lst *lst)
 {
-	ft_printf("Error !!");
-	exit(EXIT_FAILURE);
+	int	len;
+
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
 }
