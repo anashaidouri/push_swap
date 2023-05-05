@@ -6,50 +6,61 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:06:12 by ahaidour          #+#    #+#             */
-/*   Updated: 2022/10/31 12:05:19 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:13:43 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	skip(const char *str, int *i)
+void	ft_printerror(char *s)
 {
-	int	sign;
-
-	sign = 1;
-	while (str[*i] == 32 || (str[*i] >= 9 && str[*i] <= 13))
-		(*i)++;
-	while (str[*i] == '+' || str[*i] == '-')
-	{
-		if (str[*i + 1] == '+' || str[*i + 1] == '-')
-			return (0);
-		if (str[*i] == '-')
-			sign *= -1;
-		(*i)++;
-	}
-	return (sign);
+	ft_putendl_fd(s, 2);
+	exit(1);
 }
 
-int	ft_atoi(const char *str)
+static int	check1(char *str)
 {
-	int		i;
-	long	result;
-	int		sign;
+	int	i;
 
-	result = 0;
 	i = 0;
-	sign = skip(str, &i);
-	while (str[i] >= 48 && str[i] <= 57)
+	while (str && (str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	return (i);
+}
+
+static int	check2(char *str, int i, int *s)
+{
+	if (str && (str[i] == '-' || str[i] == '+'))
 	{
-		if (result * 10 + (str[i] - 48) < result)
-		{
-			if (sign == -1)
-				return (0);
-			else
-				return (-1);
-		}
-		result = result * 10 + (str[i] - 48);
+		if (str[i + 1] == '-' || str[i + 1] == '+' || str[i + 1] == '\0')
+			ft_printerror("Error");
+		if (str[i] == '-')
+			*s = -(*s);
 		i++;
 	}
-	return (result * sign);
+	return (i);
+}
+
+long int	ft_atoi(char *str)
+{
+	int		i;
+	int		s;
+	long	r;
+
+	s = 1;
+	r = 0;
+	i = check1(str);
+	i = check2(str, i, &s);
+	while (str && str[i] >= '0' && str[i] <= '9')
+	{
+		if (r * 10 + str[i] - 48 < r && s == -1)
+			ft_printerror("Error");
+		else if (r * 10 + str[i] - 48 < r && s == 1)
+			ft_printerror("Error");
+		r = r * 10 + str[i] - 48;
+		i++;
+	}
+	if (str && (str[i] == '-' || str[i] == '+'))
+		ft_printerror("Error");
+	return (r * s);
 }

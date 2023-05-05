@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:26 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:04:17 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <limits.h>
 
 typedef struct t_info
 {

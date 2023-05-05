@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/04 19:21:32 by ahaidour         ###   ########.fr       */
+/*   Created: 2023/05/04 19:20:12 by ahaidour          #+#    #+#             */
+/*   Updated: 2023/05/04 19:26:15 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int	main(int ac, char **av)
 {
@@ -28,14 +28,7 @@ int	main(int ac, char **av)
 		x.size = ft_lstsize(stack_a);
 		if (!issorted(stack_a))
 		{
-			if (x.size <= 3)
-				sort_tree(&stack_a);
-			else if (x.size > 3 && x.size <= 5)
-				sort_five(&stack_a, &stack_b, x.size);
-			else
-				large_sort(&stack_a, &stack_b);
 		}
-		// while (1);
 
 	}
 	else

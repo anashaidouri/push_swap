@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:32:29 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 14:01:45 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:15:20 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct t_lst
 	struct t_lst	*next;
 }					t_lst;
 
-int		ft_atoi(const char *str);
+long int	ft_atoi(char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t n, size_t size);
 int		ft_isalnum(int c);

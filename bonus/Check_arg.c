@@ -6,11 +6,11 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/03 16:59:47 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:20:34 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 char	*arg_1d(char **av)
 {
