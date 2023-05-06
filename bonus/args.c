@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/06 17:42:16 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:12:35 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_double_op(char *args)
 	while (args[i])
 	{
 		if ((args[i] == '-' || args[i] == '+') && (args[i + 1] == '-' || args[i
-				+ 1] == '+'))
+					+ 1] == '+'))
 			retour_err("Error !!");
 		i++;
 	}
