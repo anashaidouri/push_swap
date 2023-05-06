@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 16:37:48 by ahaidour          #+#    #+#             */
-/*   Updated: 2022/10/31 13:20:21 by ahaidour         ###   ########.fr       */
+/*   Created: 2022/11/13 14:57:01 by gloukas           #+#    #+#             */
+/*   Updated: 2023/05/06 15:25:15 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	unsigned int	i;
-	size_t			len;
-	char			*p;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
-	if (!s)
-		return (NULL);
-	len = ft_strlen(s) + 1;
-	p = malloc(len * sizeof(char));
-	if (!p)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		p[i] = f(i, s[i]);
-		i++;
-	}
-	p[i] = '\0';
-	return (p);
-}
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+char	*get_next_line(int fd);
+int		ft_strlen_new(char *s);
+char	*ft_strdup_get(char *src);
+char	*ft_strjoin_get(char *s1, char *s2);
+char	*ft_strchr_get(char *s, int find);
+
+#endif

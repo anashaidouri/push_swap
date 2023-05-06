@@ -6,16 +6,16 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:00:15 by ahaidour          #+#    #+#             */
-/*   Updated: 2022/10/31 13:32:07 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:25:47 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char	*p;
-	size_t	i;
+	int		i;
 
 	if (!s)
 		return (NULL);

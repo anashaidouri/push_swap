@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:22 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/03 17:04:17 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:26:56 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define PUSH_SWAP_H
 # include "ft_libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <limits.h>
 
 typedef struct t_info
 {
@@ -28,6 +28,7 @@ typedef struct t_info
 	int		end;
 	int		position;
 }			t_info;
+
 typedef struct all
 {
 	char	*args;
@@ -46,7 +47,7 @@ t_lst		*load_content(t_all x);
 void		retour_erreur(void);
 char		*arg_1d(char **av);
 void		arg_check(int ac, char **av);
-int			issorted(t_lst *stack_a);
+int			is_sorted(t_lst *stack_a, t_lst *stack_b);
 int			is_full(t_lst *a, t_arr array, t_info info);
 int			min_index(t_lst *stack_a);
 int			max_index(t_lst *stack_a);
@@ -58,6 +59,7 @@ void		r(t_lst **h, char *s);
 void		rotate_both(t_lst **a, t_lst **b);
 void		rr(t_lst **h, char *s);
 void		rrr(t_lst **a, t_lst **b);
+
 t_info		informations(t_arr *arr);
 int			max_stack_b(t_lst *stack_b);
 int			get_pos(t_lst *stack_a, int content);

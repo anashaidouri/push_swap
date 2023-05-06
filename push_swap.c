@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/04 19:21:32 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:34:15 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		x.arg_2d = ft_split(x.args, ' ');
 		stack_a = load_content(x);
 		x.size = ft_lstsize(stack_a);
-		if (!issorted(stack_a))
+		if (!is_sorted(stack_a, stack_b))
 		{
 			if (x.size <= 3)
 				sort_tree(&stack_a);
@@ -35,10 +35,10 @@ int	main(int ac, char **av)
 			else
 				large_sort(&stack_a, &stack_b);
 		}
-		// while (1);
-
 	}
 	else
 		retour_erreur();
+	ft_free(x.arg_2d);
+			system("leaks push_swap");
 	return (0);
 }

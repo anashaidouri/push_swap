@@ -1,38 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Check_arg.c                                        :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/04 19:20:34 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:38:32 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-char	*arg_1d(char **av)
+void	test_double_op(char *args)
 {
-	int		i;
-	char	*args;
+	int	i;
 
-	i = 1;
-	args = av[i];
-	i++;
-	while (av[i])
-	{
-		args = ft_strjoin(args, ft_strjoin(" ", av[i]));
-		i++;
-	}
 	i = 0;
 	while (args[i])
 	{
 		if ((args[i] == '-' || args[i] == '+') && (args[i + 1] == '-' || args[i
 					+ 1] == '+'))
-			retour_erreur();
+			retour_err("Error !!");
 		i++;
 	}
+}
+
+char	*arg_1d(char **av)
+{
+	int		i;
+	char	*args;
+	char *tmp;
+
+
+	i = 1;
+	args = NULL;
+	while (av[i])
+	{
+		tmp = args;
+		args = ft_strjoin(args, " ");
+		free(tmp);
+		tmp = args;
+		args = ft_strjoin(args, av[i]);
+		free(tmp);
+		i++;
+	}
+	test_double_op(args);
 	return (args);
 }
 
@@ -50,7 +63,7 @@ void	is_dup(char *a)
 		while (arg[j])
 		{
 			if (ft_strcmp(arg[i], arg[j]) == 0)
-				retour_erreur();
+				retour_err("Error !!");
 			j++;
 		}
 		i++;
@@ -68,7 +81,7 @@ void	is_empty(int ac, char **av)
 	while (i < ac)
 	{
 		if (av[i][0] == '\0')
-			retour_erreur();
+			retour_err("Error !!");
 		exist = 0;
 		j = 0;
 		while (av[i][j])
@@ -81,7 +94,7 @@ void	is_empty(int ac, char **av)
 			j++;
 		}
 		if (exist == 0)
-			retour_erreur();
+			retour_err("Error !!");
 		i++;
 	}
 }
@@ -99,8 +112,9 @@ void	arg_check(int ac, char **av)
 	{
 		if (!(args[i] >= '0' && args[i] <= '9') && args[i] != 32
 			&& args[i] != '-' && args[i] != '+' && args[i] != '\t')
-			retour_erreur();
+			retour_err("Error !!");
 		i++;
 	}
 	is_dup(args);
+	free(args);
 }

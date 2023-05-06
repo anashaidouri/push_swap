@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   rules2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 13:24:10 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 15:30:19 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:30:57 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	rrr(t_lst **stack_a, t_lst **stack_b)
 	ft_printf("rrr");
 }
 
-int	issorted(t_lst *stack_a)
+int	is_sorted(t_lst *stack_a, t_lst *stack_b)
 {
+	if (stack_b)
+		return (0);
 	while (stack_a->next)
 	{
 		if (stack_a->content > stack_a->next->content)

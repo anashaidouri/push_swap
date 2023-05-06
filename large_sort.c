@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:30:53 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/01 16:43:19 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:52:37 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	push_to_b(t_lst **stack_a, t_lst **stack_b, t_arr arr, t_info info)
 
 void	back_to_a(t_lst **stack_a, t_lst **stack_b, int size)
 {
-	while (*stack_b || !issorted(*stack_a))
+	while (*stack_b || !is_sorted(*stack_a, *stack_b))
 	{
 		if (*stack_b && (*stack_b)->index == (*stack_a)->index - 1)
 			p(stack_b, stack_a, "pa");

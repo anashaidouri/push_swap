@@ -6,25 +6,16 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:19:41 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/03 16:59:47 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:36:02 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*arg_1d(char **av)
+void	test_double_op(char *args)
 {
-	int		i;
-	char	*args;
+	int	i;
 
-	i = 1;
-	args = av[i];
-	i++;
-	while (av[i])
-	{
-		args = ft_strjoin(args, ft_strjoin(" ", av[i]));
-		i++;
-	}
 	i = 0;
 	while (args[i])
 	{
@@ -33,6 +24,28 @@ char	*arg_1d(char **av)
 			retour_erreur();
 		i++;
 	}
+}
+
+char	*arg_1d(char **av)
+{
+	int		i;
+	char	*args;
+	char *tmp;
+
+
+	i = 1;
+	args = NULL;
+	while (av[i])
+	{
+		tmp = args;
+		args = ft_strjoin(args, " ");
+		free(tmp);
+		tmp = args;
+		args = ft_strjoin(args, av[i]);
+		free(tmp);
+		i++;
+	}
+	test_double_op(args);
 	return (args);
 }
 
@@ -103,4 +116,5 @@ void	arg_check(int ac, char **av)
 		i++;
 	}
 	is_dup(args);
+	free(args);
 }
