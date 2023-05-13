@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yasbelgh <yasbelgh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:48:18 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/06 17:45:49 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:35:10 by yasbelgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	main(int ac, char **av)
 		if (!is_sorted(stack_a, stack_b))
 			sorts(x, stack_a, stack_b);
 	}
-	else
-		retour_erreur();
 	ft_free(x.arg_2d);
 	return (0);
 }

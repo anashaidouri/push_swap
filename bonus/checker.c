@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yasbelgh <yasbelgh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:20:12 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/06 17:39:38 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:38:34 by yasbelgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ t_lst	*load_content(t_all x)
 
 void	affiche_stack(t_lst *stack_a)
 {
+	if (!stack_a)
+	{
+		printf("khawi\n");
+		return ;
+	}
 	while (stack_a != NULL)
 	{
 		printf("%d\n", stack_a->content);
@@ -59,20 +64,24 @@ int	main(int ac, char **av)
 	t_lst	*stack_a;
 	t_lst	*stack_b;
 
-	x = init(ac, av);
-	stack_a = load_content(x);
-	x.size = ft_lstsize(stack_a);
-	while (1)
+	stack_b = NULL;
+	if(ac > 1)
 	{
-		rule = get_next_line(0);
-		if (!rule)
-			break ;
-		choose_rule(&stack_a, &stack_b, rule);
-		free(rule);
+		x = init(ac, av);
+		stack_a = load_content(x);
+		x.size = ft_lstsize(stack_a);
+		while (1)
+		{
+			rule = get_next_line(0);
+			if (!rule)
+				break ;
+			choose_rule(&stack_a, &stack_b, rule);
+			free(rule);
+		}
+		if (is_sorted(stack_a))
+			retour_good("OK");
+		else
+			retour_err("KO");
 	}
-	if (is_sorted(stack_a))
-		retour_good("OK");
-	else
-		retour_err("KO");
 	return (0);
 }
