@@ -6,7 +6,7 @@
 /*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:20:12 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/14 16:38:27 by ahaidour         ###   ########.fr       */
+/*   Updated: 2023/05/14 16:54:56 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int ac, char **av)
 			choose_rule(&stack_a, &stack_b, rule);
 			free(rule);
 		}
+		affiche_stack(stack_a);
 		if (is_sorted(stack_a))
 			retour_good("OK");
 		else
