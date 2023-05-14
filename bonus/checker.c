@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasbelgh <yasbelgh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahaidour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:20:12 by ahaidour          #+#    #+#             */
-/*   Updated: 2023/05/13 11:38:34 by yasbelgh         ###   ########.fr       */
+/*   Updated: 2023/05/14 16:38:27 by ahaidour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ t_lst	*load_content(t_all x)
 
 void	affiche_stack(t_lst *stack_a)
 {
-	if (!stack_a)
-	{
-		printf("khawi\n");
-		return ;
-	}
 	while (stack_a != NULL)
 	{
 		printf("%d\n", stack_a->content);
@@ -64,9 +59,9 @@ int	main(int ac, char **av)
 	t_lst	*stack_a;
 	t_lst	*stack_b;
 
-	stack_b = NULL;
-	if(ac > 1)
+	if (ac > 1)
 	{
+		stack_b = NULL;
 		x = init(ac, av);
 		stack_a = load_content(x);
 		x.size = ft_lstsize(stack_a);
